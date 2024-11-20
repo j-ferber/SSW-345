@@ -1,0 +1,68 @@
+\chapter{Pardo Split Lab \\
+\small{\textit{-- Justin Ferber}}
+\index{Pardo Split Lab} 
+\index{Chapter!Pardo Split Lab}
+\label{Chapter::Pardo Split Lab}}
+
+\begin{figure}[h]
+    \centering
+    \scalebox{.8}
+    {\includegraphics[width=\textwidth]{eps/PardoSplitLab/Screenshot-2024-10-24-195302_1.eps}}
+    \caption{\FigureLabel{PardoSplitLabQuestion} Pardo Split Lab Software Execution Model}
+\end{figure}
+
+\textbf{Calculations:}
+\begin{itemize}
+    \item Initialize = 3*(2(25)+1(400)+1(25))*0.0001 + 2*(2(0)+1(4)+1(0))*0.02 + 1*(2(0)+1(2)+1(1))*0.05 + 1*(2(0)+1(2)+1(1))*0.1 = 0.7525 s
+    \item case1 = 3(25)*0.0001 = 0.0075 s
+    \item updateMirrorNY = 3*(5(25)+2(400)+2(25))*0.0001 + 2*( 2(4) )*0.02 + ( 2(2)+2(1))*0.05 + ( 2(2)+2(1))*0.1 = 0.2925+0.32+0.3+0.6 = 1.5125 s
+    \item updateMirrorLA = 3*(4(25)+2(400)+2(25))*0.0001 + 2*( 2(4) )*0.02 + ( 2(2)+2(1))*0.05 + ( 2(2)+2(1))*0.1 = 1.505 s
+    \item queryMirrorNY = 3*(3(25)+1(400)+2(25))*0.0001 + 2*( 1(4) )*0.02 + ( 1(2)+2(1))*0.05 + ( 1(2)+2(1))*0.1 = 0.1575+0.16+0.2+0.4 = 0.9175 s
+    \item queryMirrorLA = 3*(4(25)+1(400)+2(25))*0.0001 + 2*( 1(4) )*0.02 + ( 1(2)+2(1))*0.05 + ( 1(2)+2(1))*0.1 = 0.925 s
+    \item writeMirrorNY = 3*(3(25)+1(400)+2(25))*0.0001 + 2*( 1(4) )*0.02 + ( 1(2)+2(1))*0.05 + ( 1(2)+2(1))*0.1 = 0.1575+0.16+0.2+0.4 = 0.9175 s
+    \item writeMirrorLA = 3*(4(25)+1(400)+2(25))*0.0001 + 2*( 1(4) )*0.02 + ( 1(2)+2(1))*0.05 + ( 1(2)+2(1))*0.1 = 0.925 s
+\end{itemize}
+
+\noindent
+\textbf{Best$_{Demand}$} = $2(0.7525 + 0.0075) + 2(0.9175) = 1.52 + 1.835 = 3.355 \text{ s}$
+
+\noindent
+\textbf{Worst$_{Demand}$} = $2*(initialize + case1) + 2*updateMirrorNY = 1.52 + 3.025 = 4.545 s$
+
+\noindent
+\textbf{Average$_{Demand}$} = $2*(initialize + case1) + 2*(0.5(0.7(updateMirrorNY) + 0.3(updateMirrorLA)) + 0.4(queryMirrorNY) + 0.1(writeMirrorLA)) = 1.52 + 2(0.5*(0.7*1.5125 + 0.3*1.505) + 0.4(0.9175) + 0.1(0.925)) = 1.52 + 2(0.755125+0.367+0.0925) = 3.94925 s$
+
+\begin{figure}[h]
+    \centering
+    {\includegraphics[width=\textwidth]{eps/PardoSplitLab/pardoSplitLab_img2.eps}}
+    \caption{\FigureLabel{PardoSplitLabQuestion} Pardo Split Lab Software Execution Model}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    {\includegraphics[width=\textwidth]{eps/PardoSplitLab/pardoSplitLab_img3.eps}}
+    \caption{\FigureLabel{PardoSplitLabOutput} Pardo Split Lab Simulink Output Scope}
+\end{figure}
+
+\vspace{10pt} 
+
+\noindent
+\textbf{Comparing Results:}
+Our simulated results were very accurate in comparison to our calculated results. Logically, our simulated results would have slightly larger values as we generated random noise that were greater than 0, multiplied it by 0.5\%, and added that to each processing time.
+\begin{itemize}
+    \item \textbf{Best Demand}:
+    \begin{itemize}
+        \item Calculated: \textbf{3.355 s}
+        \item Simulated: \textbf{3.357 s}
+    \end{itemize}
+    \item \textbf{Worst Demand}:
+    \begin{itemize}
+        \item Calculated: \textbf{4.545 s}
+        \item Simulated: \textbf{4.572 s}
+    \end{itemize}
+    \item \textbf{Average Demand}
+    \begin{itemize}
+        \item Calculated: \textbf{3.94925 s}
+        \item Simulated: \textbf{3.998 s} 
+    \end{itemize}
+\end{itemize}
